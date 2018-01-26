@@ -11,7 +11,7 @@ gifApp.config(function($routeProvider, $sceDelegateProvider){
 			templateUrl: 'pages/search.html',
 			controller: 'resultCtrl'
 		})
-        .when('/search/:search-term',{
+        .when('/search/:term',{
 			templateUrl: 'pages/search.html',
 			controller: 'resultCtrl'
 		})
@@ -29,6 +29,16 @@ gifApp.config(function($routeProvider, $sceDelegateProvider){
 //services
 gifApp.service('searchData', function(){
     this.searchTerm = '';
+});
+
+gifApp.directive('searchResult', function(){
+    return {
+        templateUrl: 'directives/search-result.html',
+        replace: true,
+        scope: {
+            result: '='
+        }
+    }
 });
 
 //controllers
@@ -64,7 +74,8 @@ gifApp.controller('searchCtrl', ['$scope', '$log', '$location', 'searchData', fu
     
 }]);
                                  
-gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$location', function($scope, $log, $resource, $location){
+gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$routeParams', function($scope, $log, $resource, $routeParams){
+    var resultTerm = $routeParams.term;
     
     $scope.randomGif = $resource('http://api.giphy.com/v1/gifs/search');
     //, {callback: "JSON_CALLBACK"}, { get: {method: "JSONP"}});
@@ -72,7 +83,7 @@ gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$location', fun
     //local test 
     //$scope.randomGif = $resource('random.json');
     
-    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: search-term});
+    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: resultTerm});
     
     $log.log($scope.gifResult);
     //api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq'
