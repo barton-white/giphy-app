@@ -1,5 +1,14 @@
 <div class="container">
     <div class="row">
+        <div class="col-xs-12">
+            <h1>Gif results for: {{searchTerm}}</h1>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
         <div class="col-sm-4 col-md-3 search-result" ng-repeat="r in gifResult.data">
             <search-result result="r"></search-result>
         </div>

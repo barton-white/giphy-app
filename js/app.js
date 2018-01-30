@@ -61,10 +61,9 @@ gifApp.controller('mainCtrl', ['$scope', '$log', '$resource', function($scope, $
 gifApp.controller('searchCtrl', ['$scope', '$log', '$location', 'searchData', function($scope, $log, $location, searchData){
     
     $scope.searchInput = "";
-    $log.log("test");
+    
     $scope.$watch('searchInput', function(){
             searchData.searchTerm = $scope.searchInput;
-            $log.log($scope.searchInput);
     });
     
     $scope.submit = function(){
@@ -75,15 +74,14 @@ gifApp.controller('searchCtrl', ['$scope', '$log', '$location', 'searchData', fu
 }]);
                                  
 gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$routeParams', function($scope, $log, $resource, $routeParams){
-    var resultTerm = $routeParams.term;
-    
+    $scope.searchTerm = $routeParams.term;
     $scope.randomGif = $resource('http://api.giphy.com/v1/gifs/search');
     //, {callback: "JSON_CALLBACK"}, { get: {method: "JSONP"}});
     
     //local test 
     //$scope.randomGif = $resource('random.json');
     
-    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: resultTerm});
+    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm});
     
     $log.log($scope.gifResult);
     //api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq'
