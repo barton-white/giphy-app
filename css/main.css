@@ -4,12 +4,9 @@
    Author's custom styles
    ========================================================================== */
 
-.search-result {
-    min-height: 200px;
-}
 .search-result img{
-    max-height: 100%;
-    width: auto;
+    width: 100%;
+    margin-bottom: 1em;
 }
 
 

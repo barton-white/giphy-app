@@ -83,7 +83,8 @@ gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$routeParams', 
     
     $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm});
     
-    $log.log($scope.gifResult);
+    
+    
     //api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq'
     
 }]);
