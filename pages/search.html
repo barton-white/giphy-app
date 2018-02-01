@@ -1,17 +1,47 @@
 <div class="container">
+    
     <div class="row">
         <div class="col-xs-12">
             <h1>Gif results for: {{searchTerm}}</h1>
             <hr>
         </div>
     </div>
-</div>
 
-<div class="container">
     <div class="row">
+        <div class="col-sm-4">
+            <div class="search-result" ng-repeat="r in gifResult.data | filter: firstSet">
+                <search-result result="r"></search-result>
+            </div>
+        </div>
         
-        <div class="col-sm-4 col-md-3 search-result" ng-repeat="r in gifResult.data">
-            <search-result result="r"></search-result>
+        <div class="col-sm-4">
+            <div class="search-result" ng-repeat="r in gifResult.data | filter: secondSet">
+                <search-result result="r"></search-result>
+            </div>
+        </div>
+        
+        <div class="col-sm-4">
+            <div class="search-result" ng-repeat="r in gifResult.data | filter: thirdSet">
+                <search-result result="r"></search-result>
+            </div>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <p>Page: {{ pageNumber }}</p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a class="btn btn-primary" 
+                 href="#!/search/{{searchTerm}}/{{pageNumber - 1}}" 
+                 role="button" 
+                 ng-class="{{ {disabled: pageNumber <= 1} }}"
+                 >Previous</a>
+              <a class="btn btn-primary" 
+                 href="#!/search/{{searchTerm}}/{{ pageNumber + 1 }}" 
+                 role="button"
+                 >Next</a>
+            </div>
+        </div>
+    </div>
+    
 </div>

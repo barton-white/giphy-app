@@ -15,6 +15,10 @@ gifApp.config(function($routeProvider, $sceDelegateProvider){
 			templateUrl: 'pages/search.html',
 			controller: 'resultCtrl'
 		})
+        .when('/search/:term/:page',{
+			templateUrl: 'pages/search.html',
+			controller: 'resultCtrl'
+		})
         .when('/page-two',{
 			templateUrl: 'pages/pagetwo.html',
 			controller: 'mainCtrl'
@@ -74,15 +78,38 @@ gifApp.controller('searchCtrl', ['$scope', '$log', '$location', 'searchData', fu
 }]);
                                  
 gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$routeParams', function($scope, $log, $resource, $routeParams){
+    $scope.pageNumber = Number($routeParams.page) || 1;
     $scope.searchTerm = $routeParams.term;
     $scope.randomGif = $resource('http://api.giphy.com/v1/gifs/search');
-    //, {callback: "JSON_CALLBACK"}, { get: {method: "JSONP"}});
+    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm, limit: 24});
     
-    //local test 
-    //$scope.randomGif = $resource('random.json');
-    
-    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm});
-    
+    $scope.firstSet = function(v,i,a){
+        var l = a.length;
+        if(i < Math.floor(l/3)){
+//            $log.log("1st: " + i);
+            return true;
+        } else {
+            return false;
+        }          
+    }
+    $scope.secondSet = function(v,i,a){
+        var l = a.length;
+        if(i >= Math.floor(l/3) && i < Math.floor(l/3)*2){
+//            $log.log("2nd: " + i);
+            return true;
+        } else {
+            return false;
+        }          
+    }
+    $scope.thirdSet = function(v,i,a){
+        var l = a.length;
+        if(i >= Math.floor(l/3)*2 && i < l){
+//            $log.log("3rd: " + i);
+            return true;
+        } else {
+            return false;
+        }          
+    }
     
     
     //api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq'
