@@ -1,16 +1,24 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
+        <h1>Search for Gifs!</h1>
         <p>This is a template for a simple marketing or informational website. It includes asdfsdafdasf otron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <!--p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p-->
+            <div ng-controller="searchCtrl">
+                <form class="" role="form" ng-submit="submit()">
+                    <div class="form-group">
+                    <input type="text" placeholder="Search Here" class="form-control" ng-model="searchInput">
+                    </div>
+                    <input type="submit" value="Search &raquo;" class="btn btn-success btn-lg" >
+                </form> 
+            </div>
       </div>
     </div>
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="col-xs-12">
-            <img src="{{gifResult.data.image_original_url}}">
+          <div class="col-xs-12 text-center">
+            <img class="" src="{{gifResult.data.image_original_url}}">
           </div>
       </div>

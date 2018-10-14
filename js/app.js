@@ -78,11 +78,16 @@ gifApp.controller('searchCtrl', ['$scope', '$log', '$location', 'searchData', fu
 }]);
                                  
 gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$routeParams', function($scope, $log, $resource, $routeParams){
+    
+    //scope vars
     $scope.pageNumber = Number($routeParams.page) || 1;
     $scope.searchTerm = $routeParams.term;
+    
+    //resources
     $scope.randomGif = $resource('http://api.giphy.com/v1/gifs/search');
     $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm, limit: 24});
     
+    //scope functions
     $scope.firstSet = function(v,i,a){
         var l = a.length;
         if(i < Math.floor(l/3)){
