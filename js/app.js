@@ -85,7 +85,9 @@ gifApp.controller('resultCtrl', ['$scope', '$log', '$resource', '$routeParams', 
     
     //resources
     $scope.randomGif = $resource('http://api.giphy.com/v1/gifs/search');
-    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm, limit: 24});
+    var offsetValue = ( $scope.pageNumber - 1 ) * 24;
+    $log.log(offsetValue);
+    $scope.gifResult = $scope.randomGif.get({api_key: 'U7FFjpMhs2ewS7hvDwcBmf3gS1cSgvbq', q: $scope.searchTerm, limit: 24, offset: offsetValue});
     
     //scope functions
     $scope.firstSet = function(v,i,a){
