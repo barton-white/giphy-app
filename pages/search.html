@@ -7,20 +7,20 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-4">
+    <div class="flex-container">
+        <div class="column">
             <div class="search-result" ng-repeat="r in gifResult.data | filter: firstSet">
                 <search-result result="r"></search-result>
             </div>
         </div>
         
-        <div class="col-sm-4">
+        <div class="column">
             <div class="search-result" ng-repeat="r in gifResult.data | filter: secondSet">
                 <search-result result="r"></search-result>
             </div>
         </div>
         
-        <div class="col-sm-4">
+        <div class="column">
             <div class="search-result" ng-repeat="r in gifResult.data | filter: thirdSet">
                 <search-result result="r"></search-result>
             </div>
